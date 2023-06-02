@@ -1,0 +1,17 @@
+Expt 1 A) BLOCK TRANSFER
+
+
+org 0000h
+
+MOV R2, #10			;number of elements to transfer
+MOV R0, #30h		;source base address
+MOV R1, #40h		;destination base address
+
+s1:	MOV A, @R0		;copy source address data into accumulator
+	MOV @R1, A		;copy accumulator data into destination address
+	INC R0			;move to next address in source
+	INC R1			;move to next address in destination
+	DJNZ R2, s1		;check condition and restat loop
+
+here:	SJMP here
+end
